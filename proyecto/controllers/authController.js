@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign(
       { id_personal: user.id_personal, rol: user.rol },
-      process.env.JWT_SECRET || 'fallback_secret_key', 
+      process.env.JWT_SECRET, 
       { expiresIn: '24h' } 
     );
 
