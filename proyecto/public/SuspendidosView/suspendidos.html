@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suspendidos</title>
+    <link rel="stylesheet" href="stylesSuspendidos.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <img src="../Images/logoSinFondo.PNG" alt="Logo" class="logo">
+            </div>
+            <ul class="menu">
+                <li class="menu-item"><a href="../activosView/activos.html">Activos</a></li>
+
+                <li class="menu-item"><a href="../suspendidosView/suspendidos.html" class="active">Suspendidos</a></li>
+            
+                <li class="menu-item"><a href="../carteraView/Cartera.html">Cartera</a></li>
+
+                <li class="menu-item"><a href="../instalcionesView/instalaciones.html">Instalaciones</a></li>
+
+                <li class="menu-item"><a href="../vehiculosView/vehiculos.html">Vehículos</a></li>
+
+                <li class="menu-item"><a href="../revisionView/revision.html">Revisiones </a></li>
+
+                <li class="menu-item"><a href="../gpsView/gps.html">GPS</a></li>
+
+                <li class="menu-item"><a href="../usuariosView/usuarios.html">Usuarios</a></li>
+            </ul>
+            <div class="logout">
+                <a href="#">Cerrar sesión</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Encabezado con el rectángulo blanco -->
+            <div class="header">
+                <h1>Suspendidos</h1>
+                <!-- Espacio para los iconos que agregarás después -->
+                <div class="icons-space"></div>
+            </div>
+
+            <!-- Campo de búsqueda (Debajo del encabezado) -->
+            <div class="search-container">
+                <input type="text" placeholder="Buscar servicios suspendidos...">
+                <button type="submit">Buscar</button>
+            </div>
+
+            <!-- Tabla con botones a la derecha -->
+            <section class="data-table">
+                <div class="table-wrapper">
+
+                    <div class="table-header">
+                        <div class="table-title">
+                            Listado de los servicios suspendidos
+                        </div>
+                        <!-- Botones en el lado derecho -->
+                        <div class="table-buttons">
+                            <button class="btn_reactivar" id="activarSelectedBtn">Reactivar</button>
+                           
+                        </div>
+                    </div>
+
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Cliente</th>
+                                <th>CC / NIT </th>
+                                <th>Celular </th>
+                                <th>Email </th>
+                                <th>Dirección </th>
+                                <th>Placa </th>
+                                <th>IMEI </th>
+                                <th>Instalación </th>
+                                <th>Inicial </th>
+                                <th>Mensualidad </th>
+                                <th>Vr Total </th>
+                                <th>Próximo Pago </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                  
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="../js/suspendidos.js"></script>
+</body>
+</html>

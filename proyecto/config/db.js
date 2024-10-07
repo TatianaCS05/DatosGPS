@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const { Pool } = require('pg'); 
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 
 const pool = new Pool({
-  user: 'postgres',       
-  host: 'localhost',       
-  database: 'postgres',  
-  password: '123', 
-  port: 5432, 
-  searchPath: ['public'],            
+  connectionString: process.env.DATABASE_URL
 });
+
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+};
 
 pool.connect((err, client, release) => {
   if (err) {
@@ -19,6 +19,7 @@ pool.connect((err, client, release) => {
   console.log('Conectado a la base de datos PostgreSQL');
   release(); // Libera el cliente después de la conexión
 });
+
 
 module.exports = pool;
 

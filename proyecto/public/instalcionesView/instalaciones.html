@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instalaciones</title>
+    <link rel="stylesheet" href="stylesInstalaciones.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <img src="../Images/logoSinFondo.PNG" alt="Logo" class="logo">
+            </div>
+            <ul class="menu">
+                <li class="menu-item"><a href="../activosView/activos.html" >Activos</a></li>
+
+                <li class="menu-item"><a href="../suspendidosView/suspendidos.html">Suspendidos</a></li>
+            
+                <li class="menu-item"><a href="../carteraView/Cartera.html">Cartera</a></li>
+
+                <li class="menu-item"><a href="../instalcionesView/instalaciones.html" class="active">Instalaciones</a></li>
+
+                <li class="menu-item"><a href="../vehiculosView/vehiculos.html">Vehículos</a></li>
+
+                <li class="menu-item"><a href="../revisionView/revision.html">Revisiones </a></li>
+
+                <li class="menu-item"><a href="../gpsView/gps.html">GPS</a></li>
+
+                <li class="menu-item"><a href="../usuariosView/usuarios.html">Usuarios</a></li>
+            </ul>
+            <div class="logout">
+                <a href="#">Cerrar sesión</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Encabezado con el rectángulo blanco -->
+            <div class="header">
+                <h1>Vehículos</h1>
+                <!-- Espacio para los iconos que agregarás después -->
+                <div class="icons-space"></div>
+            </div>
+
+            <!-- Campo de búsqueda (Debajo del encabezado) -->
+            <div class="search-container">
+                <input type="text" placeholder="Deseo ver los servicios instalados en este año...">
+                <button type="submit">Enviar</button>
+            </div>
+
+            <!-- Tabla con botones a la derecha -->
+            <section class="data-table">
+                <div class="table-wrapper">
+
+                    <div class="table-header">
+                        <div class="table-title">
+                            Listado de las instalciones
+                        </div>
+                    <!-- Botones en el lado derecho -->
+                    <div class="table-buttons">
+                        
+                        <button class="btn_suspend">Suspender</button>
+                        <button class="btn_new-service">+ Nuevo servicio</button>
+                    </div>

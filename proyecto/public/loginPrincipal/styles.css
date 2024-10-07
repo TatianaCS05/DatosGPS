@@ -1,0 +1,175 @@
+*{
+    font-family: 'Arial', sans-serif;
+}
+body{
+    background-image: url("https://images.unsplash.com/photo-1463130456064-77fda7f96d6b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.wrapper {
+    width: 320px;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    background: rgba(12, 51, 169, 0.06);
+    border: 1px solid rgba(88, 88, 88, 0.2);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    transition: all 0.3s ease;
+  }
+
+
+
+.container{
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 15px 0 15px;
+}
+
+/*IMAGEN */
+
+.logo{
+    width: 250px;
+    height: auto; 
+    margin-bottom: 35px;
+    
+
+}
+.titulo{
+
+    color: #02003b;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    padding: 0 0 25px 0; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.input-field .input{
+    height: 45px;
+    width: 100%;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #3b3b3b;
+    padding: 0 0 0 42px;
+    background: rgba(238, 238, 238, 0.733);
+}
+i{
+    position: relative;
+    top: -31px;
+    left: 17px;
+    color: #383838;
+}
+::-webkit-input-placeholder{
+    color: #606060;
+}
+
+
+
+/*BOTON INICIO*/
+
+.submit{
+    border: none;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 45px;
+    outline: none;
+    width: 100%;
+    color:rgb(246, 246, 246);
+    background: rgba(5, 66, 172, 0.79);
+    cursor: pointer;
+    transition: .3s;
+}
+.submit:hover{
+    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+
+.submit:active {
+    background-color: #0330d2e7; /* Color cuando se presiona el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  /* Efecto de sombra al presionar */
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 900px;
+    height: 900px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Estilos para cerrar el modal */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilos de fila y columnas */
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.column {
+    width: 48%;
+}
+
+/* Estilo general para inputs */
+input[type="text"], input[type="number"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}

@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 200px;
+    background-color: #ffffff;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1); /* Sombra en el costado derecho del menú */
+    padding: 20px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* Asegura que la sombra se aplique correctamente */
+    z-index: 1; /* Coloca la barra lateral por encima de otros elementos */
+}
+
+.brand h2 {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.menu {
+    list-style: none;
+    padding: 30px 0;
+}
+
+
+
+
+.menu-item a {
+    text-decoration: none; /* Quitar el subrayado */
+    color: #555; /* Color predeterminado del texto */
+    padding: 8px 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    display: block;
+    border-radius: 5px;
+    background-color: transparent; /* Fondo transparente por defecto */
+    transition: background-color 0.3s ease;
+}
+
+.menu-item a:hover {
+    background-color: #e7f1ff; /* Cambia a un color azul claro cuando pases el ratón */
+    color: #007bff; /* Cambia el color del texto al pasar el ratón */
+}
+
+.menu-item a.active {
+    background-color: #007bff24;
+    color: #1B59F8;
+}   
+
+
+
+
+
+
+
+
+
+
+.logout {
+    margin-top: auto;
+}
+
+.logout a {
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+}
+
+
+
+/* Main content */
+.main-content {
+    flex: 20;
+    background-color: #f8f9fa;
+    padding: 0px;
+    overflow-y: auto;
+}
+
+/* Encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white; /* Fondo blanco */
+    color: #4b4b4b; /* Texto gris oscuro */
+    padding: 20px 30px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra debajo */
+    
+}
+
+.header h1 {
+    font-size: 22px;
+}
+
+.icons-space {
+    width: 150px; /* Espacio para los iconos que agregarás después */
+}
+
+
+
+
+
+
+.search-container input::placeholder {
+    color: #afafaf; /* Cambia esto al color que prefieras */
+    opacity: 1; /* Asegúrate de que la opacidad sea 1 para que el color se aplique completamente */
+}
+/* contenedor de busqueda de AI*/
+.search-container {
+    margin: 25px 0;
+    flex: 15;
+    padding: 15px;
+    display: flex;
+   
+    transition: border-color 0.3s ease; /* Transición suave del borde */
+}
+
+/* Cuando se hace clic en el contenedor o en uno de sus hijos */
+.search-container:focus-within {
+    border-color: #7c7c7c; /* Borde gris oscuro al hacer clic */
+}
+.search-container.text{
+    color:#afafaf;
+
+}
+
+/* Estilos para el input */
+.search-container input {
+    padding: 9px;
+    width: 750px;
+    height: 40px;
+    color:#5a5a5a;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none; /* Elimina el borde azul del input al hacer clic */
+    font-size: 14px;
+    background-color: white; /* Sin color de fondo */
+}
+
+/* Botón de envío */
+.search-container button {
+    background-color: #696969;
+    color: white;
+    border: none;
+   
+    padding: 11px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 3px;
+    font-size: 14px;
+    cursor: pointer;
+  
+    transition: background-color 0.3s ease;
+}
+
+.search-container button:hover {
+    background-color: #016cdf; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);/* Cambia el color al pasar el ratón */
+}
+
+
+.search-container button:active {
+    background-color: #007bff; /* Color cuando se presiona el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efecto de sombra al presionar */
+}
+
+
+
+
+
+
+/* Tabla */
+.data-table {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 100%;
+}
+
+.table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 400px; /* Fijar una altura máxima */
+}
+
+/* Estilos para la barra de desplazamiento moderna */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 7px; /* Ancho de la barra de desplazamiento horizontal */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color gris oscuro del thumb */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #666666; /* Color gris más oscuro cuando se desplaza */
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Fondo de la barra */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    color:#555;
+    white-space: nowrap; /* Evita el salto de línea */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+th input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+
+
+
+
+
+.btn_new-service {
+    background-color: #007bff; /* Color de fondo verde */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno (padding) */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.btn_new-service:hover {
+    background-color: #005ec2; /* Color más oscuro al pasar el ratón */
+}
+
+.btn_new-service:active {
+    background-color: #007bff; /* Color cuando se presiona el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efecto de sombra al presionar */
+}
+
+
+.btn_suspend {
+    background-color: #dc3546d1; /* Color de fondo rojo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno (padding) */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar por el botón */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.btn_suspend:hover {
+    background-color: #c82333; /* Color más oscuro al pasar el ratón */
+}
+
+.btn_suspend:active {
+    background-color: #bd2130; /* Color cuando se presiona el botón */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  /* Efecto de sombra al presionar */
+}
+
+.table-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px; /* Ajustar el espacio entre los botones */
+    margin-bottom: 10px;
+    margin-top: 1px;
+}
+
+.logo {
+    width: 110px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Para mantener las proporciones de la imagen */
+    margin-top: -6px;
+    margin-bottom: -1px;
+    margin-left: 20px; 
+    
+}

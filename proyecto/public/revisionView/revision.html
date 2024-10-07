@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisiones</title>
+    <link rel="stylesheet" href="stylesRevision.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">
+                <img src="../Images/logoSinFondo.PNG" alt="Logo" class="logo">
+            </div>
+            <ul class="menu">
+                <li class="menu-item"><a href="../activosView/activos.html" >Activos</a></li>
+
+                <li class="menu-item"><a href="../suspendidosView/suspendidos.html">Suspendidos</a></li>
+
+                <li class="menu-item"><a href="../carteraView/Cartera.html">Cartera</a></li>
+
+                <li class="menu-item"><a href="../instalcionesView/instalaciones.html">Instalaciones</a></li>
+            
+                <li class="menu-item"><a href="../vehiculosView/vehiculos.html">Vehículos</a></li>
+
+                <li class="menu-item"><a href="../revisionView/revision.html" class="active">Revisiones </a></li>
+
+                <li class="menu-item"><a href="../gpsView/gps.html">GPS</a></li>
+
+                <li class="menu-item"><a href="../usuariosView/usuarios.html">Usuarios</a></li>
+                
+            </ul>
+            <div class="logout">
+                <a href="#">Cerrar sesión</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Encabezado con el rectángulo blanco -->
+            <div class="header">
+                <h1>Activos</h1>
+                <div class="icons-space"></div>
+            </div>
+
+            <!-- Campo de búsqueda -->
+            <div class="search-container">
+                <input type="text" placeholder="Deseo ver los servicios instalados en este año...">
+                <button type="submit">Enviar</button>
+            </div>
+
+            <!-- Tabla con botones a la derecha -->
+            <section class="data-table">
+                <div class="table-wrapper">
+                    <div class="table-header">
+                        <div class="table-title">
+                            Pendientes para revisar
+                        </div>
+                        <!-- Botones en el lado derecho -->
+                        <div class="table-buttons">
+                            <button class="btn_eliminar">Eliminar</button>
+                            <!-- Botón para abrir el modal -->
+                            <button class="btn_new-revision" id="openModalBtn">Añadir revisión</button>
+                        </div>
+                    </div>
+
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                            </tr>
+                            <!-- Agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>

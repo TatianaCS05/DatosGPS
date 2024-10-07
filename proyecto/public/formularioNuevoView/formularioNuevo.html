@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Servicio</title>
+    <link rel="stylesheet" href="formularioNuevo.css"> <!-- Asegúrate de tener el CSS correcto -->
+</head>
+<body>
+    <div class="container">
+        
+       
+        <form id="addServiceForm">
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="nombreCliente">Nombre del Cliente:</label>
+                  <input type="text" id="nombreCliente" name="nombreCliente" required>
+                </div>
+            </div>
+
+
+            
+            <div class="row">
+                <div class="column">
+                    <label for="cedula">CC / NIT:</label>
+                  <input type="number" id="cedula" name="cedula" required>
+                </div>
+
+            </div>
+
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="placa">Placa:</label>
+                    <input type="text" id="placa" name="placa" maxlength="6"required>
+                </div>
+                <div class="column">
+                    <label for="dispositivo">Dispositivo:</label>
+                    <input type="number" id="dispositivo" name="dispositivo" maxlength="4" required>
+                </div>
+                   
+             </div>
+
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="celular">Celular:</label>
+                   <input type="number" id="celular" name="celular" required>
+                </div>
+                    
+                <div class="column">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="correo">Correo:</label>
+                     <input type="email" id="correo" name="correo" required>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="inicial">Pago Inicial:</label>
+                    <input type="number" id="inicial" name="inicial" required>
+               </div>
+               <div class="column">
+                  <label for="mensualidad">Mensualidad:</label>
+                  <input type="number" id="mensualidad" name="mensualidad" required>
+               </div>
+            </div>  
+
+            <div class="row">
+                <div class="column">
+                    <label for="valorTotal">Valor Total:</label>
+                    <input type="number" id="valorTotal" name="valorTotal" required>
+               </div>
+            </div>  
+
+            <div class="row">
+                <div class="column">
+                        <label for="fechaInstalacion">Fecha de instalación</label>
+                        <input type="date" id="fechaInstalacion" name="fechaInstalacion" required>
+                    </div>
+                    <div class="column">
+                      <label for="proximoPago">Próximo Pago:</label>
+                      <input type="date" id="proximoPago" name="proximoPago" required>
+                 </div>
+                 
+            </div>
+            
+
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="conApagado">
+                        <input type="checkbox" id="conApagado" name="conApagado"> Con apagado
+                    </label>
+                </div>
+                <div class="column">
+                    <label for="conBuzzer">
+                        <input type="checkbox" id="conBuzzer" name="conBuzzer"> Con buzzer
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <label for="conPanico">
+                        <input type="checkbox" id="conPanico" name="conPanico"> Con pánico
+                    </label>
+                </div>
+            </div>
+
+           
+            <div class="row">
+                <div class="column">
+                    <label for="nombreInstalador">Nombre del Instalador:</label>
+                    <input type="text" id="nombreInstalador" name="nombreInstalador" required>
+
+                </div>
+                
+            </div>
+
+
+            <div class="row">
+                <div class="column">
+                    <label for="tipo">Tipo de Vehículo:</label>
+                    <input type="text" id="tipo" name="tipo" required>
+                </div>
+                <div class="column">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" required>
+                </div>
+            </div>
+
+           
+            <div class="row">
+                <div class="column">
+                    <label for="modelo">Modelo:</label>
+                    <input type="text" id="modelo" name="modelo" required>
+
+                </div>
+                
+            </div>
+
+
+            <div class="row">
+                <button type="submit" id="btnAñadirServicio">Añadir Servicio</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addServiceForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que se recargue la página
+
+            // Aquí puedes agregar la lógica para enviar el formulario a tu backend
+            // Por ejemplo, usando fetch para enviar los datos a una API
+
+            alert('Servicio añadido con éxito'); // Mensaje temporal para la demostración
+            this.reset(); // Reinicia el formulario
+        });
+    </script>
+</body>
+</html>
