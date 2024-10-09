@@ -8,7 +8,7 @@ const { verifyToken, isAdminOrEmpleado } = require('../middlewares/authMiddlewar
 // /activos...
 
 router.post('/', newActivosController.createActivo); // crear un activo
-router.get('/', activosController.getAllActivos); //http://localhost:3000/activos
+router.get('/', verifyToken, isAdminOrEmpleado, activosController.getAllActivos); //http://localhost:3000/activos
 router.get('/:placa',activosController.getActivoByPlaca); //ver un activo por el id http://localhost:3000/auth/activos/74
 router.put('/:placa',  updateActivosController.updateActivo); // hacer un update
 router.put('/:placa/suspender',  activosController.suspendActivo); // pasar un servicio a supendidos

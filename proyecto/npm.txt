@@ -8,6 +8,9 @@ npm install express ejs
 
 
 
+npm install synaptic
+
+
 
 
 

@@ -1,52 +1,39 @@
-const jwt = require('jsonwebtoken'); 
-require('dotenv').config(); 
-
-// Verificación de que el JWT_SECRET está presente
-if (!process.env.JWT_SECRET) {
-  console.error('Error: JWT_SECRET no está definido. Verifica tu archivo .env');
-  process.exit(1); // Detén la aplicación si el JWT_SECRET no está configurado
-}
+const jwt = require('jsonwebtoken'); // Importar jsonwebtoken
 
 exports.verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
+  console.log('Header de autorización:', authHeader); // Log del header de autorización
 
   if (!authHeader) {
-    return res.status(403).json({ message: 'No se proporcionó un token' });
+      console.log('No se proporcionó un token'); // Log de token no proporcionado
+      return res.status(403).json({ message: 'No se proporcionó un token' });
   }
 
   const token = authHeader.replace('Bearer ', '');
-
+  
   try {
-    // Decodificar y verificar el token usando el JWT_SECRET
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded; 
-    next();
+      const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verificar el token
+      req.user = decoded;
+      console.log('Usuario decodificado:', req.user); // Log del usuario decodificado
+      next();
   } catch (error) {
-    console.error('Error al verificar el token:', error);
-    return res.status(401).json({ message: 'Token inválido o expirado' });
+      console.error('Error al verificar el token:', error);
+      return res.status(401).json({ message: 'Token inválido o expirado' });
   }
 };
 
-// Middleware para verificar si el usuario es administrador
-exports.isAdmin = (req, res, next) => {
-  if (req.user.rol !== 'admin') {
-    return res.status(403).json({ message: 'Requiere rol de administrador' });
-  }
-  next();
-};
-
-// Middleware para verificar si el usuario es empleado
-exports.isEmpleado = (req, res, next) => {
-  if (req.user.rol !== 'empleado') {
-    return res.status(403).json({ message: 'Requiere rol de empleado' });
-  }
-  next();
-};
-
-// Middleware para verificar si el usuario es administrador o empleado
 exports.isAdminOrEmpleado = (req, res, next) => {
-  if (req.user.rol !== 'admin' && req.user.rol !== 'empleado') {
-    return res.status(403).json({ message: 'Requiere rol de administrador o empleado' });
+  if (!req.user || !req.user.rol) {
+      console.log('Usuario no autenticado o rol no encontrado'); // Log de usuario no autenticado
+      return res.status(403).json({ message: 'Usuario no autenticado o rol no encontrado' });
   }
+
+  console.log('Rol del usuario:', req.user.rol); // Log del rol del usuario
+
+  if (req.user.rol !== 'admin' && req.user.rol !== 'empleado') {
+      console.log('Acceso denegado. Rol insuficiente:', req.user.rol); // Log de rol insuficiente
+      return res.status(403).json({ message: 'Requiere rol de administrador o empleado' });
+  }
+
   next();
 };

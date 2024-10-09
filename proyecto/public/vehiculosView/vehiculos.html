@@ -45,10 +45,7 @@
             </div>
 
             <!-- Campo de búsqueda (Debajo del encabezado) -->
-            <div class="search-container">
-                <input type="text" placeholder="Deseo ver los servicios instalados en este año...">
-                <button type="submit">Enviar</button>
-            </div>
+    
 
             <!-- Tabla con botones a la derecha -->
             <section class="data-table">
@@ -58,9 +55,30 @@
                         <div class="table-title">
                             Listado de los vehículos
                         </div>
-                    <!-- Botones en el lado derecho -->
-                    <div class="table-buttons">
-                        
-                        <button class="btn_suspend">Suspender</button>
-                        <button class="btn_new-service">+ Nuevo servicio</button>
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Placa</th>
+                                    <th>Modelo </th>
+                                    <th>Marca</th>
+                                    <th>vehiculo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Aquí se insertarán las filas dinámicamente -->
+                            </tbody>
+                        </table>
                     </div>
+                </section>
+            </div>
+        </div>
+
+
+        <!-- Script para cargar la tabla dinámicamente -->
+        <script src="../js/vehiculos.js"></script>
+
+        <!-- Script para manejo de modales -->
+
+    </body>
+</html>

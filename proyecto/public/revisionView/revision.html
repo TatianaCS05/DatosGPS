@@ -45,10 +45,7 @@
             </div>
 
             <!-- Campo de búsqueda -->
-            <div class="search-container">
-                <input type="text" placeholder="Deseo ver los servicios instalados en este año...">
-                <button type="submit">Enviar</button>
-            </div>
+   
 
             <!-- Tabla con botones a la derecha -->
             <section class="data-table">
@@ -57,24 +54,31 @@
                         <div class="table-title">
                             Pendientes para revisar
                         </div>
-                        <!-- Botones en el lado derecho -->
-                        <div class="table-buttons">
-                            <button class="btn_eliminar">Eliminar</button>
-                            <!-- Botón para abrir el modal -->
-                            <button class="btn_new-revision" id="openModalBtn">Añadir revisión</button>
-                        </div>
+                        <table id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Imei</th>
+                                    <th>Placa </th>
+                                    <th>Fecha de Instalación</th>
+                                    <th>Observaciones</th>
+                                    <th>Fecha de revisión</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Aquí se insertarán las filas dinámicamente -->
+                            </tbody>
+                        </table>
                     </div>
-
-                    <table id="dataTable">
-                        <thead>
-                            <tr>
-                            </tr>
-                            <!-- Agregar más filas según sea necesario -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
-    </div>
 
-    <script>
+
+        <!-- Script para cargar la tabla dinámicamente -->
+        <script src="../js/revision.js"></script>
+
+        <!-- Script para manejo de modales -->
+
+    </body>
+</html>

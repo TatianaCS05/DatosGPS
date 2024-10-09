@@ -16,21 +16,28 @@
                 </div>
             </div>
 
-            <div class="input-field">
-                <input type="text" class="input" placeholder="Usuario" required>
-                <i class="bx bx-user"></i>
-            </div>
-            <div class="input-field">
-                <input type="password" class="input" placeholder="Contraseña" required>
-                <i class="bx bx-lock-alt"></i>
-            </div>
-            <div class="input-field">
-                <form action="../activosView/activos.html" method="GET">
+            <form id="loginForm">
+                <div class="input-field">
+                    <input type="text" class="input" name="usuario" placeholder="Usuario" required>
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-field">
+                    <input type="password" class="input" name="contraseña" placeholder="Contraseña" required>
+                    <i class="bx bx-lock-alt"></i>
+                </div>
+                <div class="input-field">
                     <input type="submit" class="submit" value="Ingresa">
-                </form>
-            </div>
+                    <form action="../activosView/activos.html" method="GET">
+                        
+                    </form>
+                    
+                    
+                </div>
+            </form>
+            
         </div>
     </div>
+    <script src="../js/login.js"></script>
 </body>
 </html>
            

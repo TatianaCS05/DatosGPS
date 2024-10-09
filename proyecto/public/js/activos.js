@@ -1,13 +1,23 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     // Elemento donde se insertarán los datos
     const tableBody = document.querySelector('#dataTable tbody');
 
     // Función para obtener los servicios activos
     const fetchActivos = async () => {
+        const token = localStorage.getItem('token'); // Obtener el token almacenado
+        if (!token) {
+            console.error('No se encontró un token');
+            return;
+        }
+
         try {
-            const response = await fetch('http://localhost:3000/activos');  // URL de tu ruta en el back-end
+            const response = await fetch('http://localhost:3000/activos', {
+                headers: {
+                    'Authorization': `Bearer ${token}`, // Incluir el token
+                    'Content-Type': 'application/json',
+                }
+            });
+
             const data = await response.json();
 
             if (data.length === 0) {
@@ -48,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Llamar a la función para obtener los datos cuando cargue la página
     fetchActivos();
- // Configuración del modal
- // Configuración del modal
+
+    // Configuración del modal
     const openModalBtn = document.getElementById("openModalBtn");
     openModalBtn.onclick = function() {
         fetch('http://localhost:3000/formularioNuevoView/formularioNuevo.html') // Ruta del archivo HTML
@@ -136,11 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
-
-  // SUSPENDER POR PLACA
-
-     
+    // SUSPENDER POR PLACA
     const addCheckboxEvent = () => {
         const checkboxes = document.querySelectorAll('.select-checkbox');
         
@@ -158,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     document.getElementById('suspendSelectedBtn').addEventListener('click', async () => {
+        const token = localStorage.getItem('token'); // Obtener el token almacenado
         const selectedCheckbox = document.querySelector('.select-checkbox:checked');
 
         if (!selectedCheckbox) {
@@ -171,7 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`http://localhost:3000/activos/${placa}/suspender`, {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Authorization': `Bearer ${token}`, // Incluir el token en el header
+                    'Content-Type': 'application/json',
                 }
             });
 
@@ -191,15 +199,3 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchActivos();
     });
 });
-
-
-
-
-
-
-
-
-
-
-
-

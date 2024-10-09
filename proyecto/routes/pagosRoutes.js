@@ -1,13 +1,16 @@
 
 const express = require('express');
 const router = express.Router();
-const pagosController= require('../controllers/pagosController');
+const pagosController = require('../controllers/pagosController');
 
-router.get('/', pagosController.getAllPagos);
 
-router.get('/:placa', pagosController.getPagosByPlaca);
+router.get('/pendientes', pagosController.recordarPagosPendientes);  
 
-router.put('/:placa', pagosController.updatePagoByPlaca);
 
+router.get('/:placa', pagosController.getPagosByPlaca); 
+router.put('/:placa', pagosController.updatePagoByPlaca);  
+
+
+router.get('/', pagosController.getAllPagos);  
 
 module.exports = router;

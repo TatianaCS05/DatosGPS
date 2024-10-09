@@ -89,6 +89,7 @@ body {
     color: #4b4b4b; /* Texto gris oscuro */
     padding: 20px 30px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra debajo */
+    margin-bottom: 40px;
     
 }
 
@@ -178,14 +179,15 @@ body {
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    max-width: 100%;
+    max-width: 150%;
 }
 
 .table-wrapper {
+    
     max-width: 100%;
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 400px; /* Fijar una altura máxima */
+    max-height: 500px; /* Fijar una altura máxima */
 }
 
 /* Estilos para la barra de desplazamiento moderna */

@@ -11,24 +11,16 @@
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="brand">
-                
                 <img src="../Images/logoSinFondo.PNG" alt="Logo" class="logo">
             </div>
             <ul class="menu">
                 <li class="menu-item"><a href="../activosView/activos.html" >Activos</a></li>
-
                 <li class="menu-item"><a href="../suspendidosView/suspendidos.html">Suspendidos</a></li>
-            
                 <li class="menu-item"><a href="../carteraView/Cartera.html" class="active">Cartera</a></li>
-
-                <li class="menu-item"><a href="../instalcionesView/instalaciones.html">Instalaciones</a></li>
-
+                <li class="menu-item"><a href="../instalcionesView/instalaciones.html"> Instalaciones</a></li>
                 <li class="menu-item"><a href="../vehiculosView/vehiculos.html">Vehículos</a></li>
-
-                <li class="menu-item"><a href="../revisionView/revision.html">Revisiones </a></li>
-
+                <li class="menu-item"><a href="../revisionView/revision.html">Revisiones</a></li>
                 <li class="menu-item"><a href="../gpsView/gps.html">GPS</a></li>
-
                 <li class="menu-item"><a href="../usuariosView/usuarios.html">Usuarios</a></li>
             </ul>
             <div class="logout">
@@ -41,48 +33,77 @@
             <!-- Encabezado con el rectángulo blanco -->
             <div class="header">
                 <h1>Cartera</h1>
-                <!-- Espacio para los iconos que agregarás después -->
                 <div class="icons-space"></div>
             </div>
 
             <!-- Campo de búsqueda (Debajo del encabezado) -->
-            <div class="search-container">
-                <input type="text" placeholder="Deseo ver los servicios instalados en este año...">
-                <button type="submit">Enviar</button>
-            </div>
+            <div id="recordatorioContainer" class="message" style="display: none;"></div>
 
             <!-- Tabla con botones a la derecha -->
             <section class="data-table">
                 <div class="table-wrapper">
-
                     <div class="table-header">
                         <div class="table-title">
                             Listado de pagos
                         </div>
-                    <!-- Botones en el lado derecho -->
-                    <div class="table-buttons">
-                        
-                        <button class="btn_actulizar">Actualizar Pago</button>
+                        <!-- Botones en el lado derecho -->
+                        <div class="table-buttons">
+                            <button id="openModalBtn" class="btn_actulizar">Actualizar Pago</button>
+                        </div>
                     </div>
-                        <table id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Cliente</th>
-                                    <th>Placa </th>
-                                    <th>Fecha de Pago</th>
-                                    <th>Pago </th>
-                                    <th>Próximo Pago</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Aquí se insertarán las filas dinámicamente -->
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
-            </div>
+                    <table id="dataTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Cliente</th>
+                                <th>Placa</th>
+                                <th>Fecha de Pago</th>
+                                <th>Pago</th>
+                                <th>Próximo Pago</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Aquí se insertarán las filas dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          
+            <form id="updatePagoForm">
+                <div class="row">
+                    <div class="column">
+                        <label for="fechaPago">Fecha de Pago</label>
+                        <input type="date" id="fechaPago" name="fechaPago" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="Pago">Pago</label>
+                        <input type="text" id="Pago" name="Pago" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="column">
+                        <label for="proximoPago">Próximo Pago:</label>
+                        <input type="date" id="proximoPago" name="proximoPago" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button type="submit" id="btnAtualizarPago">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 
         <!-- Script para cargar la tabla dinámicamente -->

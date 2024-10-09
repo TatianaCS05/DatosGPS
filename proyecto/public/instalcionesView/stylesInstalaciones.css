@@ -102,7 +102,7 @@ body {
     color: #4b4b4b; /* Texto gris oscuro */
     padding: 20px 30px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra debajo */
-    
+    margin-bottom: 40px;
 }
 
 .header h1 {
@@ -113,6 +113,15 @@ body {
     width: 150px; /* Espacio para los iconos que agregarás después */
 }
 
+
+.table-title {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #797979;
+    text-align: left;
+    margin-bottom: -15px;
+    margin-top: -2px; /* Alinea el texto a la izquierda */
+}
 
 
 
@@ -195,10 +204,11 @@ body {
 }
 
 .table-wrapper {
+    
     max-width: 100%;
     overflow-x: auto;
     overflow-y: auto;
-    max-height: 400px; /* Fijar una altura máxima */
+    max-height: 500px; /* Fijar una altura máxima */
 }
 
 /* Estilos para la barra de desplazamiento moderna */
@@ -221,6 +231,7 @@ body {
 }
 
 table {
+    margin-top: 40px;
     width: 100%;
     border-collapse: collapse;
     font-size: 13px;
