@@ -31,6 +31,10 @@ app.use('/pdf', pdfRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('', (req, res) => {
+    res.redirect('/loginView/login.html');
+});
+
 app.get('/activosView/activos.html', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/activosView/activos.html'));
 });
