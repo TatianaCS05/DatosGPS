@@ -1,9 +1,9 @@
-const pool = require('../config/db');
+const client = require('../config/db');
 
 // Obtener todos los gps
 exports.getAllGps = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM gps');
+        const result = await client.query('SELECT * FROM gps');
         res.status(200).json(result.rows);
     } catch (error) {
         console.log(error);

@@ -9,7 +9,9 @@ const instalacionesRoutes = require ('./routes/instalacionesRoutes');
 const vehiculosRoutes = require ('./routes/vehiculosRoutes');
 const revisionRoutes = require ('./routes/revisionRoutes')
 const gpsRoutes = require ('./routes/gpsRoutes');
-const usuariosRoutes = require ('./routes/usuariosRoutes')
+const usuariosRoutes = require ('./routes/usuariosRoutes');
+const pdfRoutes = require('./routes/pdfRoutes');
+
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use('/vehiculos',vehiculosRoutes);
 app.use('/revision', revisionRoutes);
 app.use('/gps', gpsRoutes);
 app.use('/personal', usuariosRoutes) 
+app.use('/pdf', pdfRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -39,4 +42,6 @@ app.use((err, req, res, next) => {
 
 app.listen(3000, () => {
     console.log('Servidor corriendo en el puerto 3000');
+
 });
+

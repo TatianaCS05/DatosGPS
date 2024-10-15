@@ -198,4 +198,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Recargar la tabla después de suspender el servicio
         fetchActivos();
     });
+
+    document.getElementById('pdf').addEventListener('click', async () => {
+        try {
+            // Realiza una petición POST al endpoint que genera el PDF
+            const response = await fetch('http://localhost:3000/pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+    
+            // Verifica si la respuesta fue exitosa
+            if (response.ok) {
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+    
+                // Crear un enlace temporal para descargar el archivo PDF
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'reporte.pdf';  // Nombre del archivo descargado
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+    
+                // Limpia el URL del objeto después de usarlo
+                window.URL.revokeObjectURL(url);
+            } else {
+                console.error('Error al generar el PDF:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error en la solicitud:', error);
+        }
+    });
 });

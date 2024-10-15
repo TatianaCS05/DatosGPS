@@ -1,5 +1,5 @@
 
-const pool = require('../config/db');
+const client = require('../config/db');
 exports.updateActivo = async (req, res) => {
     const { placa } = req.params;
     const {
@@ -86,7 +86,7 @@ exports.updateActivo = async (req, res) => {
       
       values.push(placa);
   
-      const result = await pool.query(query, values);
+      const result = await client.query(query, values);
   
       if (result.rows.length === 0) {
         return res.status(404).json({ message: 'Servicio activo no encontrado' });

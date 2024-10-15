@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const pool = require('./config/db');  // Asegúrate de que la conexión a la base de datos está bien
+const client = require('./config/db');  // Asegúrate de que la conexión a la base de datos está bien
 
 async function updatePasswords() {
     const users = [
@@ -14,7 +14,7 @@ async function updatePasswords() {
     for (const user of users) {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         const query = 'UPDATE personal SET contraseña_hash = $1 WHERE id_personal = $2';
-        await pool.query(query, [hashedPassword, user.id]);
+        await client.query(query, [hashedPassword, user.id]);
         console.log(`Contraseña actualizada para el usuario con ID: ${user.id}`);
     }
 }

@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log('Datos del pago cargados:', data);
             document.getElementById('fechaPago').value = data.fecha_pago;
-            document.getElementById('Pago').value = data.valor_pagado;
+            document.getElementById('Pago').value = pago.valor_pagado || '';
             document.getElementById('proximoPago').value = data.proximo_pago;
         } catch (error) {
             console.error('Error al cargar los datos del pago:', error);

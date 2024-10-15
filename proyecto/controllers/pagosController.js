@@ -1,9 +1,9 @@
-const pool = require('../config/db');
+const client = require('../config/db');
 
 // Obtener todos los pagos
 exports.getAllPagos = async (req, res) => {
     try {
-        const result = await pool.query('SELECT nombre_cliente, placa, fecha_pago, valor_pagado, proximo_pago FROM pagos');
+        const result = await client.query('SELECT nombre_cliente, placa, fecha_pago, valor_pagado, proximo_pago FROM pagos');
         res.status(200).json(result.rows);
     } catch (error) {
         console.log(error);
@@ -14,7 +14,7 @@ exports.getAllPagos = async (req, res) => {
 exports.getPagosByPlaca = async (req, res) => {
     const { placa } = req.params;
     try {
-        const result = await pool.query('SELECT * FROM pagos WHERE placa = $1', [placa]);
+        const result = await client.query('SELECT * FROM pagos WHERE placa = $1', [placa]);
         if (result.rows.length === 0) {
             return res.status(404).json({ message: 'No se encontraron pagos para esta placa' });
         }
@@ -33,7 +33,7 @@ exports.updatePagoByPlaca = async (req, res) => {
     const { fecha_pago, valor_pagado, proximo_pago } = req.body;
 
     try {
-        const result = await pool.query(
+        const result = await client.query(
             'UPDATE pagos SET fecha_pago = $1, valor_pagado = $2, proximo_pago = $3 WHERE placa = $4 RETURNING *',
             [fecha_pago, valor_pagado, proximo_pago, placa]
         );
@@ -57,7 +57,7 @@ const predictAction = (pagoPendiente, clienteRecordado, tiempoDePago) => {
 exports.recordarPagosPendientes = async (req, res) => {
     try {
         const hoy = new Date().toISOString().split('T')[0];
-        const result = await pool.query('SELECT * FROM pagos WHERE proximo_pago = $1', [hoy]);
+        const result = await client.query('SELECT * FROM pagos WHERE proximo_pago = $1', [hoy]);
 
         if (result.rows.length === 0) {
             return res.status(200).json({ mensaje: 'No hay pagos pendientes para hoy.' });

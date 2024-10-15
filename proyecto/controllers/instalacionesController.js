@@ -1,9 +1,9 @@
-const pool = require('../config/db');
+const client = require('../config/db');
 
 // Obtener todos los instalaciones
 exports.getAllInstalaciones = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM instalaciones');
+        const result = await client.query('SELECT * FROM instalaciones');
         res.status(200).json(result.rows);
     } catch (error) {
         console.log(error);

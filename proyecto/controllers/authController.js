@@ -1,5 +1,5 @@
 const express = require('express');
-const pool = require('../config/db');
+const client = require('../config/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -9,7 +9,7 @@ exports.login = async (req, res) => {
 
     try {
         const query = 'SELECT * FROM personal WHERE usuario = $1';
-        const result = await pool.query(query, [usuario]);
+        const result = await client.query(query, [usuario]);
 
         if (result.rows.length === 0) {
             console.log('Usuario no encontrado:', usuario); // Log de usuario no encontrado

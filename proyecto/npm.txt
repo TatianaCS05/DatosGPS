@@ -1,4 +1,6 @@
 npm init -y
+
+npm install pg
 npm install cors
 npm install express
 npm install dotenv
@@ -7,11 +9,13 @@ npm install express cors
 npm install express ejs
 
 
+npm install sequelize sequelize-cockroachdb
 
 npm install synaptic
 
 
-
+npm install jspdf
+npm install pdfkit
 
 
 

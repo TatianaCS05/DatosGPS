@@ -1,7 +1,7 @@
-const pool = require('../config/db');
+const client = require('../config/db');
 
 exports.createActivo = async (req, res) => {
-  const client = await pool.connect();
+  const client = await client.connect();
   try {
     await client.query('BEGIN'); // Inicia la transacción
 

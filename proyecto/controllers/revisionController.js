@@ -1,9 +1,9 @@
-const pool = require('../config/db');
+const client = require('../config/db');
 
 // Obtener todos los vehiculos
 exports.getAllRevision = async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM revision');
+        const result = await client.query('SELECT * FROM revision');
         res.status(200).json(result.rows);
     } catch (error) {
         console.log(error);

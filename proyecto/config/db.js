@@ -4,23 +4,19 @@ const { Pool } = require('pg');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
+const { Client } = require('pg');
+
+// Configuración del cliente de PostgreSQL
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
-
-pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Error al conectar a la base de datos', err.stack);
-  }
-  console.log('Conectado a la base de datos PostgreSQL');
-  release(); // Libera el cliente después de la conexión
-});
+client.connect()
+  .then(() => console.log('Conectado a la base de datos'))
+  .catch((err) => console.error('Error al conectar a la base de datos', err));
 
 
-module.exports = pool;
-
-
+  module.exports = client;
