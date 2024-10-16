@@ -1,44 +1,70 @@
 const PDFDocument = require('pdfkit');
-const client = require('../config/db');
+const fs = require('fs');
+const client = require('../config/db'); // Conexión a la base de datos
 
-const generatePDF = async (req, res) => {
-  const { activos, order } = req.body; // Recibimos la tabla y si se quiere ordenar alfabéticamente
+// Función para generar el PDF
+const generatePdf = async (req, res) => {
+    try {
+        // Consulta de la tabla 'activos' organizada por id 
+        const query = 'SELECT * FROM activos ORDER BY id_servicio';
+        const { rows: activos } = await client.query(query);
+        
+        // Creación del PDF
+        const doc = new PDFDocument();
+        const fileName = `reporte_activos_${Date.now()}.pdf`;
+        const filePath = `./reports/${fileName}`;
 
-  let query = `SELECT * FROM ${activos}`;
-  if (order) {
-    query += ` ORDER BY 1 ASC`; // Ordena por la primera columna (placa o lo que corresponda)
-  }
+        // Definir el archivo de salida
+        doc.pipe(fs.createWriteStream(filePath));
 
-  try {
-    const result = await client.query(query);
+        // Añadir título
+        doc.fontSize(18).text('Reporte de Activos', { align: 'center' });
+        doc.fontSize(12).text(`Empresa: Data Center`, { align: 'center' });
+        doc.text(`Fecha: ${new Date().toLocaleDateString()}`, { align: 'center' });
+        doc.text(`Hora: ${new Date().toLocaleTimeString()}`, { align: 'center' });
+        doc.moveDown(2);
 
-    // Crea un nuevo documento PDF
-    const doc = new PDFDocument();
-    let filename = `${activos}.pdf`;
-    filename = encodeURIComponent(filename);
-    
-    // Configura la respuesta HTTP para enviar el archivo PDF
-    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
-    res.setHeader('Content-Type', 'application/pdf');
+        // Dibujar tabla
+        doc.fontSize(12).text('ID', 100, 150);
+        doc.text('Nombre del Cliente', 150, 150);
+        doc.text('Descripción del Servicio', 300, 150);
+        // Quitar la columna de Fecha Inicio
+        // doc.text('Fecha Inicio', 450, 150); // Esta línea se ha eliminado
 
-    doc.pipe(res); // Envia el PDF generado directamente a la respuesta
+        // Separador
+        doc.moveTo(100, 165).lineTo(500, 165).stroke();
 
-    // Agrega contenido al PDF
-    doc.fontSize(20).text(`Reporte de la tabla ${activos}`, { align: 'center' });
-    doc.moveDown();
+        let y = 180; // Posición vertical inicial
+        activos.forEach((activo) => {
+            doc.text(activo.id_servicio, 100, y);
+            doc.text(activo.nombre_cliente, 150, y);
+            doc.text(activo.descripcion_servicio, 300, y);
+            // También se ha eliminado el acceso a fecha_inicio
+            // doc.text(activo.fecha_inicio.toISOString().split('T')[0], 450, y); // Esta línea se ha eliminado
+            y += 20;
 
-    result.rows.forEach((row, index) => {
-      doc.fontSize(12).text(`${index + 1}. ${JSON.stringify(row)}`);
-    });
+            // Reiniciar la posición en caso de sobrepasar el límite
+            if (y > 700) {
+                doc.addPage(); // Añadir nueva página si la lista es muy larga
+                y = 50; // Reiniciar la posición vertical
+            }
+        });
 
-    doc.end(); // Finaliza la creación del PDF
+        // Finalizar el PDF
+        doc.end();
 
-  } catch (err) {
-    console.error('Error al generar el PDF:', err);
-    res.status(500).json({ error: 'Error al generar el PDF' });
-  }
+        // Enviar el PDF al cliente
+        res.download(filePath, fileName, (err) => {
+            if (err) {
+                console.error('Error al descargar el archivo:', err);
+                res.status(500).send('Error generando el PDF');
+            }
+        });
+
+    } catch (error) {
+        console.error('Error generando el reporte de activos:', error);
+        res.status(500).send('Error generando el reporte');
+    }
 };
 
-module.exports = {
-  generatePDF,
-};
+module.exports = { generatePdf };

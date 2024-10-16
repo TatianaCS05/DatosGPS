@@ -1,8 +1,8 @@
-const pool = require('../config/db'); 
+const client = require('../config/db'); 
 
 exports.getAllActivos = async (req, res) => {
   try {
-    const result = await pool.query('SELECT nombre_cliente, cc_nit, celular, email, direccion,placa, imei_gps, fecha_instalacion, pago_inicial, valor_mensualidad, valor_total, proximo_pago FROM activos');
+    const result = await client.query('SELECT nombre_cliente, cc_nit, celular, email, direccion,placa, imei_gps, fecha_instalacion, pago_inicial, valor_mensualidad, valor_total, proximo_pago FROM activos');
     if (result.rows.length === 0) {
       return res.status(200).json({ message: 'No hay activos disponibles', data: [] });
     }
@@ -19,7 +19,7 @@ exports.getAllActivos = async (req, res) => {
 exports.getActivoByPlaca = async (req, res) => {
   const { placa } = req.params;
   try {
-    const result = await pool.query('SELECT * FROM activos WHERE placa = $1', [placa]);
+    const result = await client.query('SELECT * FROM activos WHERE placa = $1', [placa]);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Servicio activo no encontrado' });
     }
@@ -36,7 +36,7 @@ exports.suspendActivo = async (req, res) => {
 
   try {
     // Verificar si el activo está activo
-    const checkResult = await pool.query(
+    const checkResult = await client.query(
       `SELECT estado FROM activos WHERE placa = $1`,
       [placa]
     );
@@ -46,13 +46,13 @@ exports.suspendActivo = async (req, res) => {
     }
 
     // Actualiza el estado del servicio en la tabla activos a suspendido
-    const updateResult = await pool.query(
+    const updateResult = await client.query(
       `UPDATE activos SET estado = 'suspendido' WHERE placa = $1 RETURNING *`,
       [placa]
     );
 
     // Copia el registro a la tabla suspendidos
-    const suspendResult = await pool.query(
+    const suspendResult = await client.query(
       `INSERT INTO suspendidos (nombre_cliente, cc_nit, celular, email, direccion, placa, imei_gps,
         fecha_instalacion, pago_inicial, valor_mensualidad, valor_total, proximo_pago)
        SELECT nombre_cliente, cc_nit, celular, email, direccion, placa, imei_gps, fecha_instalacion, pago_inicial,
@@ -61,7 +61,7 @@ exports.suspendActivo = async (req, res) => {
       [placa]
     );
     
-    await pool.query('DELETE FROM activos WHERE placa = $1', [placa]);
+    await client.query('DELETE FROM activos WHERE placa = $1', [placa]);
 
     // Devuelve el registro suspendido
     res.json({ message: 'Servicio suspendido correctamente', suspendido: suspendResult.rows[0] });
@@ -77,7 +77,7 @@ exports.deleteActivo = async (req, res) => {
   const { placa } = req.params;
 
   try {
-    const result = await pool.query('DELETE FROM activos WHERE placa = $1 RETURNING *', [placa]);
+    const result = await client.query('DELETE FROM activos WHERE placa = $1 RETURNING *', [placa]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Servicio activo no encontrado' });
