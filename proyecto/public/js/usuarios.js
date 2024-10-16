@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener los servicios personal
     const fetchPersonal = async () => {
         try {
-            const response = await fetch('http://localhost:3000/personal');  // URL de tu ruta en el back-end
+            const response = await fetch('https://datosgps-3.onrender.com/personal');  // URL de tu ruta en el back-end
             const data = await response.json();
 
             if (data.length === 0) {

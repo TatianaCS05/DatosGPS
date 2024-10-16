@@ -8,7 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     console.log('Intentando iniciar sesión con:', { usuario, contraseña });
 
     try {
-        const response = await fetch('http://localhost:3000/auth/login', {
+        const response = await fetch('https://datosgps-3.onrender.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
