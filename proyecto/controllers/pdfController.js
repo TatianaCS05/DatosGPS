@@ -1,18 +1,24 @@
-const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const PDFDocument = require('pdfkit');
 const client = require('../config/db'); // Conexión a la base de datos
 
 // Función para generar el PDF
 const generatePdf = async (req, res) => {
     try {
-        // Consulta de la tabla 'activos' organizada por id 
+        // Verificar si la carpeta reports existe, si no, crearla
+        const reportPath = './reports';
+        if (!fs.existsSync(reportPath)) {
+            fs.mkdirSync(reportPath);
+        }
+
+        // Consulta de la tabla 'activos' organizada por id
         const query = 'SELECT * FROM activos ORDER BY id_servicio';
         const { rows: activos } = await client.query(query);
-        
+
         // Creación del PDF
         const doc = new PDFDocument();
         const fileName = `reporte_activos_${Date.now()}.pdf`;
-        const filePath = `./reports/${fileName}`;
+        const filePath = `${reportPath}/${fileName}`;
 
         // Definir el archivo de salida
         doc.pipe(fs.createWriteStream(filePath));
@@ -28,8 +34,6 @@ const generatePdf = async (req, res) => {
         doc.fontSize(12).text('ID', 100, 150);
         doc.text('Nombre del Cliente', 150, 150);
         doc.text('Descripción del Servicio', 300, 150);
-        // Quitar la columna de Fecha Inicio
-        // doc.text('Fecha Inicio', 450, 150); // Esta línea se ha eliminado
 
         // Separador
         doc.moveTo(100, 165).lineTo(500, 165).stroke();
@@ -39,14 +43,12 @@ const generatePdf = async (req, res) => {
             doc.text(activo.id_servicio, 100, y);
             doc.text(activo.nombre_cliente, 150, y);
             doc.text(activo.descripcion_servicio, 300, y);
-            // También se ha eliminado el acceso a fecha_inicio
-            // doc.text(activo.fecha_inicio.toISOString().split('T')[0], 450, y); // Esta línea se ha eliminado
             y += 20;
 
-            // Reiniciar la posición en caso de sobrepasar el límite
+            // Si la lista es muy larga, crear una nueva página
             if (y > 700) {
-                doc.addPage(); // Añadir nueva página si la lista es muy larga
-                y = 50; // Reiniciar la posición vertical
+                doc.addPage();
+                y = 50;
             }
         });
 

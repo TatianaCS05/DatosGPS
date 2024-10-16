@@ -18,6 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 app.use('/auth', authRoutes);
 app.use('/activos', activosRoutes);
 app.use('/suspendidos', suspendidosRoutes); 
@@ -29,6 +30,7 @@ app.use('/gps', gpsRoutes);
 app.use('/personal', usuariosRoutes) 
 app.use('/pdf', pdfRoutes);
 
+app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {

@@ -201,12 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('pdf').addEventListener('click', async () => {
         try {
-            // Realiza una petición POST al endpoint que genera el PDF
+            // Realiza una petición GET al endpoint que genera el PDF
             const response = await fetch('https://datosgps-3.onrender.com/pdf', {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
             });
     
             // Verifica si la respuesta fue exitosa
@@ -231,4 +228,5 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error en la solicitud:', error);
         }
     });
+    
 });
