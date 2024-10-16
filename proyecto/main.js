@@ -31,7 +31,7 @@ app.use('/pdf', pdfRoutes);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('', (req, res) => {
+app.get('/', (req, res) => {
     res.redirect('/loginPrincipal/index.html');
 });
 
