@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Realiza una petición POST al endpoint que genera el PDF
             const response = await fetch('https://datosgps-3.onrender.com/pdf', {
-                method: 'POST',
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
