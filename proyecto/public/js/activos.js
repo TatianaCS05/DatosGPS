@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/activos', {
+            const response = await fetch('http://localhost:3000/activos', {
                 headers: {
                     'Authorization': `Bearer ${token}`, // Incluir el token
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configuración del modal
     const openModalBtn = document.getElementById("openModalBtn");
     openModalBtn.onclick = function() {
-        fetch('https://datosgps-3.onrender.com/formularioNuevoView/formularioNuevo.html') // Ruta del archivo HTML
+        fetch('http://localhost:3000/formularioNuevoView/formularioNuevo.html') // Ruta del archivo HTML
             .then(response => {
                 if (!response.ok) {
                     console.error('Error al cargar el formulario:', response.statusText);
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
                 try {
                     // Realiza la solicitud al backend
-                    const response = await fetch('https://datosgps-3.onrender.com/activos', {
+                    const response = await fetch('http://localhost:3000/activos', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const placa = selectedCheckbox.getAttribute('data-placa');
 
         try {
-            const response = await fetch(`https://datosgps-3.onrender.com/activos/${placa}/suspender`, {
+            const response = await fetch(`http://localhost:3000/activos/${placa}/suspender`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`, // Incluir el token en el header
@@ -199,34 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchActivos();
     });
 
-    document.getElementById('pdf').addEventListener('click', async () => {
-        try {
-            // Realiza una petición GET al endpoint que genera el PDF
-            const response = await fetch('https://datosgps-3.onrender.com/pdf', {
-                method: 'GET',
-            });
-    
-            // Verifica si la respuesta fue exitosa
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-    
-                // Crear un enlace temporal para descargar el archivo PDF
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'reporte.pdf';  // Nombre del archivo descargado
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-    
-                // Limpia el URL del objeto después de usarlo
-                window.URL.revokeObjectURL(url);
-            } else {
-                console.error('Error al generar el PDF:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Error en la solicitud:', error);
-        }
+    document.getElementById('pdf').addEventListener('click', () => {
+        window.open('http://localhost:3000/pdf', '_blank');
     });
-    
 });
+
+

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fetchPagos = async () => {
         try {
             console.log('Intentando obtener servicios pagos...');
-            const response = await fetch('https://datosgps-3.onrender.com/pagos');
+            const response = await fetch('http://localhost:3000/pagos');
             
             // Verificar si la respuesta es correcta
             if (!response.ok) {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadPagoData = async (placa) => {
         try {
             console.log('Cargando datos del pago para la placa:', placa);
-            const response = await fetch(`https://datosgps-3.onrender.com/pagos/${placa}`);
+            const response = await fetch(`http://localhost:3000/pagos/${placa}`);
             
             if (!response.ok) {
                 console.error('Error al obtener datos del pago:', response.statusText);
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             console.log('Enviando datos para actualizar el pago:', data);
-            const response = await fetch(`https://datosgps-3.onrender.com/pagos/${selectedPlaca}`, {
+            const response = await fetch(`http://localhost:3000/pagos/${selectedPlaca}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para verificar y mostrar el recordatorio de pagos pendientes
     const checkPagosPendientes = async () => {
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/pagos/pendientes');
+            const response = await fetch('http://localhost:3000/pagos/pendientes');
             const data = await response.json();
             
             const recordatorioContainer = document.getElementById('recordatorioContainer');
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mostrar recordatorio si hay pagos pendientes
     const mostrarRecordatorioPagosPendientes = async () => {
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/pagos/pendientes');
+            const response = await fetch('http://localhost:3000/pagos/pendientes');
             const data = await response.json();
             
             const pagosPendientes = data.recordatorios || []; // Asegúrate de que sea una lista

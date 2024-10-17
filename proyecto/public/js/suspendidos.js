@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener los servicios suspendidos
     const fetchSuspendidos = async () => {
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/suspendidos'); // URL de tu ruta en el back-end
+            const response = await fetch('http://localhost:3000/suspendidos'); // URL de tu ruta en el back-end
             const data = await response.json();
 
             if (data.data.length === 0) { // Cambiar a data.data.length
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const placa = selectedCheckbox.getAttribute('data-placa');
 
         try {
-            const response = await fetch(`https://datosgps-3.onrender.com/suspendidos/${placa}/reactivar`, {
+            const response = await fetch(`http://localhost:3000/suspendidos/${placa}/reactivar`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

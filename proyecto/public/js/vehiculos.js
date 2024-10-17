@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener los servicios vehiculos
     const fetchVehiculos = async () => {
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/vehiculos');  // URL de tu ruta en el back-end
+            const response = await fetch('http://localhost:3000/vehiculos');  // URL de tu ruta en el back-end
             const data = await response.json();
 
             if (data.length === 0) {

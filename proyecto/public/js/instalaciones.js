@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener los servicios instalaciones
     const fetchInstalaciones = async () => {
         try {
-            const response = await fetch('https://datosgps-3.onrender.com/instalaciones');  // URL de tu ruta en el back-end
+            const response = await fetch('http://localhost:3000/instalaciones');  // URL de tu ruta en el back-end
             const data = await response.json();
 
             if (data.length === 0) {
