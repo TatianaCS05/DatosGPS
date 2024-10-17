@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para obtener los servicios revision
     const fetchRevision = async () => {
         try {
-            const response = await fetch('http://localhost:3000/revision');  // URL de tu ruta en el back-end
+            const response = await fetch('https://datosgps-3.onrender.com/revision');  // URL de tu ruta en el back-end
             const data = await response.json();
 
             if (data.length === 0) {
